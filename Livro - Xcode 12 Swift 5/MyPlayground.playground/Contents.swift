@@ -440,3 +440,24 @@ struct User {
 var user_1 = User()
 user_1.username = "SuricatoTI"
 
+// * O Swift Remove o inicializador memberwise se vc criar um inicializador próprio.
+//Portanto, assim que vc adiciona um inicializador personalizado para sua estrutura,
+//o inicalizador de membro padrão desaparece. Se vc quiser que ele permaneça, mova
+//seu inicializador personalizado pra uma extensão, assim:
+struct Employee {
+    var name: String
+    var yearsActive = 0
+}
+
+extension Employee {
+    init() {
+        self.name = "Anonymous"
+        print("Creating an anonymous employee...")
+    }
+}
+
+//creating a named employee now works
+let roslin = Employee(name: "Jean Camargo")
+
+//as does creating an anonymoys employee
+let anon = Employee()
