@@ -559,3 +559,40 @@ class Poodle: Dog {
         super.init(name: name, breed: "Poodle")
     }
 }
+
+//-----------------------------------------------------------------------------------
+
+// =============== Sobrescrevendo métodos ===============
+
+class Dog_2 {
+    func makeNoise() {
+        print("Whoof!")
+    }
+}
+
+class Poodle_2: Dog_2 {
+    override func makeNoise() {
+        print("Yip!")
+    }
+}
+
+let poodle = Poodle_2()
+poodle.makeNoise()
+
+//-----------------------------------------------------------------------------------
+
+// =============== Classe final ===============
+
+//  * Quando vc declara uma classe como final, nenhuma outra classe pode herdar dela.
+//Isso significa que eles não podem sobrescrever seus métodos para mudar seu
+//comportamento, eles precisam usar sua classe da maneira que foi escrita.
+
+final class Dog_3 {
+    var name: String
+    var breed: String
+    
+    init(name: String, breed: String) {
+        self.name = name
+        self.breed = breed
+    }
+}
