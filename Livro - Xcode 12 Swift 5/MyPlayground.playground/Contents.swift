@@ -547,4 +547,15 @@ class Dog {
     }
 }
 
+//-----------------------------------------------------------------------------------
 
+// =============== Herença de classe ===============
+
+//  * 2ª diferença entre classes e estruturas é que vc pode criar uma classe com
+//base e uma classe existente. Ela herda todas as propriedades e métodos da classe
+//original e pode adicionar seus próprios por cima. (HERANÇA !!!)
+class Poodle: Dog {
+    init(name: String) {
+        super.init(name: name, breed: "Poodle")
+    }
+}
