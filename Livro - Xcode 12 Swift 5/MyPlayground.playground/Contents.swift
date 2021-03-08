@@ -529,3 +529,22 @@ let person_2 = Person_2(id: "1111")
 
 // * Public
 // Permite que todos os outros códigos usem a propriedade ou método.
+
+//-----------------------------------------------------------------------------------
+
+// =============== Criando suas próprias classes ===============
+
+//  * 1º diferença entre classes e structs é que as classes nunca vêm com um
+//inicializador de membro. Isso significa que se vc tiver propriedade em sua
+//classe, deve sempre criar seu próprio inicializador.
+class Dog {
+    var name: String
+    var breed: String
+    
+    init(name: String, breed: String) {
+        self.name = name
+        self.breed = breed
+    }
+}
+
+
