@@ -461,3 +461,71 @@ let roslin = Employee(name: "Jean Camargo")
 
 //as does creating an anonymoys employee
 let anon = Employee()
+
+//-----------------------------------------------------------------------------------
+
+// =============== Propriedades lazys ===============
+//  * Como uma otimização de desempenho, o Swift permite criar alguma propriedade
+// apenas quando forem necessárias.
+
+struct FamilyTree {
+    init() {
+        print("Creating family tree")
+    }
+}
+
+
+//Mas se nem sempre precisássemos da ávore genealógica para uma pesa em particular?
+//Se adicionarmos a palavra-chave lazy à propriedade familyTree, o Swift só criará
+//a FamilyTree quando for acessada pela primeira vez:
+struct Person_1 {
+    var name: String
+    lazy var familyTree = FamilyTree()
+    
+    init(name: String) {
+        self.name = name
+    }
+}
+
+var ed = Person_1(name: "Jean")
+// Se vc quiser ver a mensagem "Creating family tree", vc precisa acessar a propriedade
+//pelo menos uma vez:
+ed.familyTree
+
+//-----------------------------------------------------------------------------------
+
+// =============== Propriedades e métodos estáticos ===============
+
+struct Student {
+    static var classSize = 0
+    var name: String
+    
+    init(name: String) {
+        self.name = name
+        Student.classSize += 1
+    }
+}
+
+print(Student.classSize)
+
+//-----------------------------------------------------------------------------------
+
+// =============== Controle de acesso ===============
+
+//  * Private
+
+struct Person_2 {
+    private var id: String
+    
+    init(id: String) {
+        self.id = id
+    }
+}
+
+let person_2 = Person_2(id: "1111")
+
+//person_2.id nao funciona
+// Agora, apenas os métodos internos de Person_2 podem ler a propriedade id
+
+// * Public
+// Permite que todos os outros códigos usem a propriedade ou método.
