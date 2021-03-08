@@ -618,3 +618,40 @@ var singerCopy = singer
 singerCopy.name = "Justin Bieber"
 
 print(singer.name)
+
+//-----------------------------------------------------------------------------------
+
+// =============== Desinicializadores ===============
+
+//  * A quarta diferença entre classes e estruturas é que as classes podem ter
+//desinicializadores, um código que é executado quando uma instância de uma
+//classe é destruida.
+
+class Person_3 {
+    var name = "John Doe"
+    
+    init() {
+        print("\(name) is alive!")
+    }
+    
+    func printGreeting() {
+        print("Hello, I'm \(name)")
+    }
+    
+    //Será chamado quando a instância Person estiver sendo destruída.
+    deinit {
+        print("\(name) não existe mais!")
+    }
+}
+
+for _ in 1...3 {
+    let person = Person_3()
+    person.printGreeting()
+}
+
+//-----------------------------------------------------------------------------------
+
+// =============== Mutabilidade ===============
+
+
+
