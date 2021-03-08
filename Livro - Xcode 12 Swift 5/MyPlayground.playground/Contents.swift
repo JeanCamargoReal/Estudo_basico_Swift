@@ -596,3 +596,25 @@ final class Dog_3 {
         self.breed = breed
     }
 }
+
+//-----------------------------------------------------------------------------------
+
+// =============== Copiando objetos ===============
+
+//  * A terceira diferença entre classes e estruturas, é como eles são copiados.
+//Quando vc opia uma estrutura, o original e a cópia são coisas diferentes, mudar
+//um não mudará o outro. Quando vc copiar uma classe, tanto o original e a de
+//cópia são a mesma coisa.
+
+class Singer {
+    var name = "Taylor Swift"
+}
+
+var singer = Singer()
+
+print(singer.name)
+
+var singerCopy = singer
+singerCopy.name = "Justin Bieber"
+
+print(singer.name)
