@@ -778,3 +778,29 @@ extension Int {
 //-----------------------------------------------------------------------------------
 
 // =============== Extensões de protocolo ===============
+
+//  * São como extensões regulares, exceto ao invés de estender um tipo específico
+//como Int, vc estende um protocolo inteiro para que todos os tipos em conformidade
+//obtenham suas alterações.
+
+let pythons = ["Eric", "Graham", "John", "Michael", "Terry", "Terry"]
+let beatles_3 = Set(["John", "Paul", "George", "Ringo"])
+
+//Os arrays e conjuntos do Swift estão em conformidade com um protocolo chamado
+//Collection, então podemos escrever uma extensão para esse protocolo para adicionar
+// um método summarize() para imprimir a coleção de forma organizada:
+extension Collection {
+    func summarize() {
+        print("There are \(count) of us:")
+        
+        for name in self {
+            print(name)
+        }
+    }
+}
+//Ambos Array e Set agora terão esse método, para que possamos experimentá-lo:
+pythons.summarize()
+beatles_3.summarize()
+
+
+
