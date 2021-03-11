@@ -802,5 +802,27 @@ extension Collection {
 pythons.summarize()
 beatles_3.summarize()
 
+//-----------------------------------------------------------------------------------
 
+// =============== Programação orientada a protocolo ===============
 
+//  * Primeiro, aqui está um protocolo chamado Identifiable que
+//requer que qualquer tipo em conformidade tenha uma propriedade id
+//e um método identify():
+protocol Identifiable_1 {
+    var id: String { get set }
+    func identify()
+}
+
+extension Identifiable_1 {
+    func identify() {
+        print("My ID is \(id).")
+    }
+}
+
+struct User_3: Identifiable_1 {
+    var id: String
+}
+
+let suricatoTI = User_3(id: "SuricatoTI")
+suricatoTI.identify()
