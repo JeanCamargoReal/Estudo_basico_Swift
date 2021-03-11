@@ -749,3 +749,32 @@ protocol Employee_1: Payable, NeedsTraining, HasVacation {}
 //Agora podemos fazer com que novos tipos estejam em conformidade com aquele
 //unico protocolo, em vez de cada um dos três individualmente.
 
+//-----------------------------------------------------------------------------------
+
+// =============== Extensions ===============
+
+//  * As extensões permitem adicionar métodos aos tipos existentes, para fazê-los
+//fazer coisas para as quais não foram originalmente projetados.
+
+extension Int {
+    func squared() -> Int {
+        return self * self
+    }
+}
+
+let n = 8
+
+print(n.squared())
+
+//  * O Swift não permite adicionar propriedade armazenadas em extensões, então vc
+//deve usar propriedades computadas em seu lugar.
+
+extension Int {
+    var isEven: Bool {
+        return self % 2 == 0
+    }
+}
+
+//-----------------------------------------------------------------------------------
+
+// =============== Extensões de protocolo ===============
