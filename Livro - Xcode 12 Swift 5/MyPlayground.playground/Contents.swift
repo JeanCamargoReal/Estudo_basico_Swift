@@ -653,5 +653,99 @@ for _ in 1...3 {
 
 // =============== Mutabilidade ===============
 
+//  * A diferença final entre classes e estruturas é a maneira como lidam com
+//constantes. Se vc tiver uma estrutura constante com uma propriedade variável,
+//essa propriedade não pode ser alterada pq a estrutura em si é constante.
+//  No entanto, se vc tiver uma classe constante com uma propriedade variável,
+//essa propriedade pode ser alterada. Por causa disso, as classes não precisam da
+//palavra-chave mutating com métodos que alteram propriedades, isso só é nessário
+//com structs.
 
+
+//-----------------------------------------------------------------------------------
+
+// =============== Protocolos ===============
+
+//  * POP -> Programação orientada a protocolo
+// * Procolos são uma forma de descrever quais propriedades e métodos algo deve ter.
+//Em seguida, vc diz ao Swift quais tipos usam esse protocolo, um processo conhecido
+//como adoção ou conformidade com o protocolo.
+
+protocol Identifiable {
+    var id: String { get set}
+}
+//Não podemos criar instâncias desse protocolo, é uma descrição do que queremos,
+//ao invés de algo que podemos criar e usar diretamente. Mas nós podemos criar
+//um struct em conformidade com isso:
+struct User_4: Identifiable {
+    var id: String
+}
+//Por fim escreveremos uma função displayID() que aceita qualquer objeto Identifiable:
+func displayID(thing: Identifiable) {
+    print("My ID is \(thing.id)")
+}
+
+// Outro exemplo
+
+//struct Book {
+//    var name: String
+//}
+//
+//func buy(_ book: Book) {
+//    print("I'm buying \(book.name)")
+//}
+
+protocol Purchaseable {
+    var name: String {get set}
+}
+
+struct Book: Purchaseable {
+    var name: String
+    var author: String
+}
+
+struct Movie: Purchaseable {
+    var name: String
+    var actors: [String]
+}
+
+struct Car: Purchaseable {
+    var name: String
+    var manufacturer: String
+}
+
+struct Coffee: Purchaseable {
+    var name: String
+    var strength: Int
+}
+
+func buy(_ item: Purchaseable) {
+    print("I'm buying \(item.name)")
+}
+
+//-----------------------------------------------------------------------------------
+
+// =============== Herança de protocolos ===============
+
+//  * Um protocolo pode herdar de outro em um processo conhecido como herença de
+//protocolo. Ao contrário das classes, vc pode herdar de vários protocolos ao mesmo
+//tempo antes de adicionar suas próprias personalizações.
+
+protocol Payable {
+    func calculateWages() -> Int
+}
+
+protocol NeedsTraining {
+    func study()
+}
+
+protocol HasVacation {
+    func TakeVacation(days: Int)
+}
+
+//Agora podemos crar um único protocolo que os reúne em um protocolo
+protocol Employee_1: Payable, NeedsTraining, HasVacation {}
+
+//Agora podemos fazer com que novos tipos estejam em conformidade com aquele
+//unico protocolo, em vez de cada um dos três individualmente.
 
