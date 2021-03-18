@@ -826,3 +826,135 @@ struct User_3: Identifiable_1 {
 
 let suricatoTI = User_3(id: "SuricatoTI")
 suricatoTI.identify()
+
+//-----------------------------------------------------------------------------------
+
+// =============== Opcionais ===============
+
+//  * Solução do Swift para referências nulas.
+
+var age: Int? = nil
+
+//-----------------------------------------------------------------------------------
+
+// =============== Unwrapping Opcionais ===============
+
+//  * Desembrulhando com if let
+var name_3: String? = nil
+
+if let unwrapped = name_3 {
+    print("\(unwrapped.count) letters")
+} else {
+    print("Name unknown")
+}
+
+
+// 2º Exemplo
+func getUsername() -> String? {
+    "Taylor"
+}
+
+if let username = getUsername() {
+    print("The name is \(username)")
+} else {
+    print("unknown")
+}
+
+//  * Desembrulhando com guard
+
+//  Guard let irá desembrulhar um opcional para vc, mas se encontar nil dentro,
+//espera que vc saia da função, loop ou condição em que o usou.
+//  No entanto, a principal diferença entre if let e guard let é que seu opcional
+//desembrulhado permanece utilizável após o código guard.
+
+func greet(_ name: String?) {
+    guard let unwrapped = name else {
+        print("You don't have a name!")
+        
+        return
+    }
+    
+    print("Hello, \(unwrapped)!")
+}
+
+//  * Force unwarp
+
+//  Opcionais representam dados que podem ou não estar lá, mas às vezes vc sabe com
+//certeza que um valor não é nulo. Nestes casos, o Swift permite forçar o desembrulhar
+//o opcional, convertê-lo de um tipo opcional em um tipo não opcional.
+
+let str_1 = "5"
+let num_2 = Int(str)!
+
+// * Opcionais implicitamente desembrulhados
+
+//  Como os opcionais regulares, os opcionais não embalados implicitamente podem
+//conter um valor ou podem ser nil. No entanto, ao contrário dos opcionais regulares,
+//vc não precisa desembrulhá-lo para usá-los, vc pode usá-los como se fossem opcionais.
+//  Opcionais implicitamente desembrulhados são criados adicionando um ponto de
+//exclamação ap;os o nome do tipo.
+let age_2: Int! = nil
+
+// * Encadeamento opcional
+
+//  Swift nos fornece um atalho ao usar opcionais, se vc deseja acessar algo como
+//a.b.ce e b é opcional, vc pode escrever um ponto de interrogação depois de habilitar
+//o encadeamento opcional a.b?.c
+//  Quando esse código for executado, o Swift verificará se b tem um valor e, se for
+//nil o resto da linha será ignorado. O Swift retornará nil imediatamente. Mas se tiver
+//um valor, será desembrulhado e a execução continuará.
+
+let names = ["John", "Paul", "George", "Ringo"]
+
+let beatle = names.first?.uppercased()
+
+
+// * Optional try
+
+// Em vez de escrever isso:
+//do {
+//    let result = try runRiskyFunction()
+//    print(result)
+//} catch {
+//    // Fail!
+//}
+
+// Vc pode escrever isto:
+//if let result = try? runRiskyFunction() {
+//    print(result)
+//}
+
+
+// * Typecasting
+
+//  O Swift sempre deve saber o tipo de cada uma das suas variáveis, mas às vezes
+//vc sabe mais informacoes do que o Swift.
+
+class Animal {}
+
+class Fish: Animal{}
+
+class Dog_1: Animal {
+    func makeNoise() {
+        print("Woof!")
+    }
+}
+
+
+let pets = [Fish(), Dog_1(), Fish(), Dog_1()]
+
+// O Swift pode ver ambos Fish e Dog herder da classe Animal, então ele usa a
+//inferência de tipo para fazer de pets um array de Animais.
+
+// Se quiser fazer um loop sobre o array pets e pedir a todos os cães para latir,
+//precisamos executar o typecast, o Swift verificará se cada animal é um objeto
+//Dog e, se for, podemos chamar a função makeNoise()
+
+// Ele usa uma nova palavra-chave chamada as?, que retorna um opcional, que será nil
+//se o typecast falhou ou um tipo convertido caso contrário.
+
+for pet in pets {
+    if let dog = pet as? Dog_1 {
+        dog.makeNoise()
+    }
+}
